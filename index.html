@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>15 Ayımız Mübarək 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    background:linear-gradient(135deg,#ffd1dc,#ff9ecf);
+    font-family:'Dancing Script', cursive;
+    height:100vh;
+    overflow:hidden;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* 📸 ŞƏKİLLƏR */
+.photos img{
+    width:60px;
+    height:40px;
+    object-fit:cover;
+    position:absolute;
+    opacity:0.8;
+    border-radius:6px;
+    box-shadow:0 0 10px rgba(255,255,255,0.4);
+    animation:floatPhoto 12s ease-in-out infinite alternate;
+}
+
+@keyframes floatPhoto{
+    from{transform:translateY(0)}
+    to{transform:translateY(-25px)}
+}
+
+/* 📦 QUTU */
+.container{
+    background:rgba(255,255,255,0.22);
+    padding:25px;
+    border-radius:20px;
+    width:90%;
+    max-width:400px;
+    text-align:center;
+    box-shadow:0 0 30px rgba(255,0,150,0.4);
+    z-index:10;
+}
+
+h1{font-family:'Pacifico', cursive;font-size:30px}
+.names{font-family:'Great Vibes', cursive;font-size:34px;margin:10px 0}
+
+.counter{
+    margin-top:10px;
+    font-size:20px;
+}
+
+button{
+    background:#ff4f9a;
+    border:none;
+    color:white;
+    padding:12px 20px;
+    border-radius:25px;
+    font-size:18px;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.hidden{display:none}
+
+.letter,.note{
+    background:white;
+    color:#ff4f9a;
+    padding:20px;
+    border-radius:15px;
+}
+
+.bigText{
+    font-size:48px;
+    font-family:'Pacifico', cursive;
+}
+
+.heart{
+    position:absolute;
+    font-size:20px;
+    animation:float 4s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh)}
+    to{transform:translateY(-10vh)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 FON MUSİQİ -->
+<audio autoplay loop>
+    <source src="https://dl.sndup.net/qzvm/Nova%20Norda%20-%20A%C5%9Fka%20%C3%87arem%20Yok.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🖼 HƏRƏKƏTLİ ŞƏKİLLƏR -->
+<div class="photos">
+    <img src="IMG1.jpg" style="top:5%;left:5%">
+    <img src="IMG2.jpg" style="top:15%;right:8%">
+    <img src="IMG3.jpg" style="bottom:10%;left:12%">
+    <img src="IMG1.jpg" style="bottom:20%;right:5%">
+</div>
+
+<!-- 🌸 BAŞLANĞIC -->
+<div class="container" id="start">
+    <h1>Ayımız Mübarək 🤍</h1>
+    <div class="names">Aydanımm & Abusuuu</div>
+    <div class="counter" id="days"></div>
+    <button onclick="openLetter()">📩 Məktubu aç</button>
+</div>
+
+<!-- 📩 MƏKTUB -->
+<div class="container hidden" id="letterBox">
+    <div class="letter">
+        29/12/2025 🤍<br>
+        15 ayımız mübarəkkkk ömrümm 🫠🤍<br><br>
+        seni çoxxx seviremmm 🤍<br>
+        yaxşıki varımsannnn Aydanımmm 🤍<br>
+        inşallah 15 illiyimizə 🤍
+    </div>
+    <button onclick="finishLetter()">Bitdi</button>
+</div>
+
+<!-- 📝 NOT -->
+<div class="container hidden" id="noteBox">
+    <div class="note">
+        15 aydır yanımdasan Aydanımm 🤍<br><br>
+        hər an üçün sənə minnətdaram 🫠<br>
+        nə yaxşı ki səni seçmişəm 🤍<br>
+        mənim günəşimm 🤍
+    </div>
+    <button onclick="finalText()">seni çox sevirəm abumm 🤍</button>
+</div>
+
+<!-- ❤️ SON -->
+<div class="container hidden" id="finalBox">
+    <div class="bigText">Bilirdim ;) 🤍</div>
+</div>
+
+<script>
+// 📆 GÜN SAYĞACI
+const startDate = new Date("2024-09-29");
+const today = new Date();
+const diff = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+document.getElementById("days").innerHTML =
+    diff + " gündür birlikdəyik 🤍";
+
+// 🔁 KEÇİDLƏR
+function openLetter(){
+    start.classList.add("hidden");
+    letterBox.classList.remove("hidden");
+}
+function finishLetter(){
+    letterBox.classList.add("hidden");
+    noteBox.classList.remove("hidden");
+    hearts();
+}
+function finalText(){
+    noteBox.classList.add("hidden");
+    finalBox.classList.remove("hidden");
+}
+
+// 🤍 ÜRƏKLƏR
+function hearts(){
+    for(let i=0;i<30;i++){
+        let h=document.createElement("div");
+        h.className="heart";
+        h.innerHTML="🤍";
+        h.style.left=Math.random()*100+"vw";
+        h.style.animationDuration=2+Math.random()*3+"s";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),4000);
+    }
+}
+</script>
+
+</body>
+</html>
