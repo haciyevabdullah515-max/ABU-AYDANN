@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bagışla</title>
+
+<style>
+body{
+  margin:0;
+  padding:0;
+  background:#111;
+  color:#fff;
+  font-family:Arial, sans-serif;
+  text-align:center;
+}
+
+.hidden{display:none;}
+
+.box{
+  margin:15px;
+  padding:20px;
+  background:#222;
+  border-radius:12px;
+  font-size:18px;
+  line-height:1.6;
+  max-height:65vh;
+  overflow-y:auto;
+}
+
+button{
+  padding:12px 28px;
+  font-size:20px;
+  border:none;
+  border-radius:10px;
+  margin:15px;
+  background:#e53935;
+  color:#fff;
+}
+
+.fire{
+  position:fixed;
+  font-size:30px;
+  animation:fire 2.5s linear forwards;
+}
+
+@keyframes fire{
+  from{bottom:-40px; opacity:1;}
+  to{bottom:100%; opacity:0;}
+}
+
+.heart{
+  position:fixed;
+  font-size:36px;
+  animation:heart 3s linear forwards;
+}
+
+@keyframes heart{
+  from{top:100%;}
+  to{top:45%;}
+}
+
+#finalHeart{
+  font-size:120px;
+  margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="intro">hər şeydən əvvəl bağışlanma diləyirəm və üzr istəyirəm</h1>
+
+<div id="longMsg" class="box hidden">
+bax bilmirem ne etmişem ne sehv etmişem bilmirem mene olan bu reftarıvı baş aça bilmirem  
+amma bu reftarın mene yaşamı yox ölümü daddırır  
+sene yalvarıram düzəltmək üçün nelerse edek  
+meni bağışla meni braxma  
+menim senden başqa heçkimim yoxdu  
+
+senin bu reftarın hereketlərin meni çox incidir  
+hegigeten meni öldürür  
+men artıg istemirem evin künclerinde divarlarında  
+yere yixılıb bogula bogula aglayim  
+ölüm nefessiz qalım istemirem  
+
+bunu mene yaşatma  
+bilmirem ne etmişem ne pisliyim deyib  
+amma üzr istəyirəm  
+eger nese etmişemsede bil ki içdən peşmanam  
+
+Aydanımm xahiş edirem meni braxma  
+men sensiz qala bilmirem  
+gel aramizdaki bu leneti hell edek  
+aradan qaldiraq  
+
+senden çox üzr istəyirəm  
+bağışlanma diləyirəm  
+
+<b>seni çoxxx seviremmm</b>
+
+<br><br>
+<button onclick="go1()">bağışlamıram</button>
+</div>
+
+<div id="step1" class="box hidden">
+yalvarıram nolar bağışla
+<br>
+<button onclick="go2()">bağışlamıram</button>
+</div>
+
+<div id="step2" class="box hidden">
+nolarrr ömrümmmm  
+senee yalvarırammm  
+ölüm ayağındaa nolarr bagişlaaa  
+qurrrbannnn olummm
+<br>
+<button onclick="final()">son dəfə bağışlayıram</button>
+</div>
+
+<div id="final" class="hidden">
+<h2>seniiii çoxxx seviremmm</h2>
+<h2>yaxşıkiii varımsannn</h2>
+<div id="finalHeart">❤️ 0101 ❤️</div>
+</div>
+
+<script>
+setTimeout(()=>{
+  intro.classList.add("hidden");
+  longMsg.classList.remove("hidden");
+},2000);
+
+function go1(){
+  longMsg.classList.add("hidden");
+  step1.classList.remove("hidden");
+}
+
+function go2(){
+  step1.classList.add("hidden");
+  step2.classList.remove("hidden");
+}
+
+function final(){
+  step2.classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
+
+  // Fişənglər
+  for(let i=0;i<80;i++){
+    let f=document.createElement("div");
+    f.className="fire";
+    f.innerHTML=Math.random()>0.5?"🎆":"🎇";
+    f.style.left=Math.random()*100+"%";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),2500);
+  }
+
+  // Ürəklər
+  for(let i=0;i<25;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"%";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),3000);
+  }
+}
+</script>
+
+</body>
+</html>
