@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bağışla Məni</title>
+
+<style>
+body{
+  margin:0;
+  background:#0b0b0b;
+  color:#fff;
+  font-family:Arial, sans-serif;
+  text-align:center;
+  overflow:hidden;
+}
+
+.section{display:none; animation:fade 1.2s ease forwards;}
+.show{display:block;}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+.big{
+  font-size:30px;
+  margin-top:40vh;
+  animation:zoom 2.5s ease forwards;
+}
+
+@keyframes zoom{
+  from{opacity:0; transform:scale(0.5);}
+  to{opacity:1; transform:scale(1);}
+}
+
+.box{
+  background:#1a1a1a;
+  margin:20px;
+  padding:20px;
+  border-radius:16px;
+  max-height:65vh;
+  overflow-y:auto;
+  line-height:1.7;
+}
+
+button{
+  padding:14px 32px;
+  font-size:20px;
+  border:none;
+  border-radius:14px;
+  margin:12px;
+  background:#e53935;
+  color:white;
+}
+
+/* FIREWORKS */
+.firework{
+  position:fixed;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:white;
+  animation:explode 1.2s ease-out forwards;
+}
+
+@keyframes explode{
+  to{
+    transform:translate(var(--x), var(--y));
+    opacity:0;
+  }
+}
+
+/* HEARTS */
+.heart{
+  position:fixed;
+  bottom:-40px;
+  font-size:32px;
+  animation:float 4s linear forwards;
+}
+
+@keyframes float{
+  to{transform:translateY(-110vh);}
+}
+
+#finalHeart{
+  font-size:140px;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro" class="section show big">
+hər şeydən əvvəl<br>
+üzr istəyirəm<br>
+bağışlanma diləyirəm
+</div>
+
+<!-- QUESTION -->
+<div id="question" class="section">
+<h1>bağışlayırsan məni?</h1>
+<button onclick="start()">hə</button>
+<button onclick="start()">yox</button>
+</div>
+
+<!-- APOLOGY -->
+<div id="apology" class="section box">
+bax bilmirem ne etdim amma bilirəm ki səni incitdim  
+mən sənin qəlbini qırmaq istəməzdim  
+sən mənim hər şeyimsən  
+sensiz nəfəs ala bilmirəm  
+
+səni çoxxx seviremmm  
+yalvarıram məni tərk etmə  
+
+<br><br>
+<button onclick="noStage()">bağışlamıram</button>
+</div>
+
+<!-- NO LOOP -->
+<div id="no" class="section box">
+<div id="noText"></div>
+<br>
+<button onclick="nextNo()">bağışlamıram</button>
+</div>
+
+<!-- FINAL BUTTON -->
+<div id="last" class="section box">
+artıq başqa sözüm qalmadı  
+son qərar səndir
+<br><br>
+<button onclick="final()">son dəfə bağışlayıram</button>
+</div>
+
+<!-- END -->
+<div id="end" class="section">
+<h2>seniii çoxxx seviremmm</h2>
+<h2>yaxşıkiii varımsannn</h2>
+<div id="finalHeart">❤️ 0101 ❤️</div>
+</div>
+
+<script>
+const noMessages=[
+"yalvarıram nolarr bağışla",
+"sənsiz yaşaya bilmirəm ömrümmm",
+"qəlbimi əlinə al parçala amma getmə",
+"ölüm ayağındayam sənin üçün",
+"səni itirməkdən qorxuram",
+"sən mənim hər şeyimsən",
+"məni belə yarım buraxma",
+"nolarrr bağışla qurban olum",
+"sən gülməsən dünya qaranlıqdır",
+"səni sevmək mənim taleyimdi",
+"sənsiz nəfəsim kəsilir",
+"axı mən səni çox sevirəm",
+"məni bağışla yalvarıram",
+"bir şans ver ömrümmm",
+"son dəfə yalvarıram bağışla"
+];
+
+let noIndex=0;
+
+setTimeout(()=>{
+  intro.classList.remove("show");
+  question.classList.add("show");
+},3000);
+
+function start(){
+  question.classList.remove("show");
+  apology.classList.add("show");
+}
+
+function noStage(){
+  apology.classList.remove("show");
+  no.classList.add("show");
+  noText.innerHTML=noMessages[0];
+}
+
+function nextNo(){
+  noIndex++;
+  if(noIndex<noMessages.length){
+    noText.innerHTML=noMessages[noIndex];
+  }else{
+    no.classList.remove("show");
+    last.classList.add("show");
+  }
+}
+
+function fireworkBurst(){
+  for(let i=0;i<40;i++){
+    let f=document.createElement("div");
+    f.className="firework";
+    f.style.left=Math.random()*100+"vw";
+    f.style.top=Math.random()*100+"vh";
+    f.style.setProperty("--x",(Math.random()*300-150)+"px");
+    f.style.setProperty("--y",(Math.random()*300-150)+"px");
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1200);
+  }
+}
+
+function hearts(){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"%";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),4000);
+}
+
+function final(){
+  last.classList.remove("show");
+  end.classList.add("show");
+
+  let fw=setInterval(fireworkBurst,400);
+  let ht=setInterval(hearts,200);
+
+  setTimeout(()=>{
+    clearInterval(fw);
+    clearInterval(ht);
+  },10000);
+}
+</script>
+
+</body>
+  </html>
