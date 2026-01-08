@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bagışla</title>
+<style>
+body{
+    margin:0;
+    padding:0;
+    background:#111;
+    color:#fff;
+    font-family: Arial, sans-serif;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* Başlanğıc mesaj */
+#intro{
+    position:absolute;
+    top:40%;
+    width:100%;
+    font-size:32px;
+    font-weight:bold;
+    animation:introAnim 3s forwards;
+}
+
+@keyframes introAnim{
+    0%{opacity:0; transform:scale(0.5);}
+    50%{opacity:1; transform:scale(1.2);}
+    100%{opacity:0; transform:scale(1);}
+}
+
+/* Sual və mesajlar */
+#question,#longMessage,#drama1,#drama2{
+    display:none;
+    margin-top:50px;
+}
+
+button{
+    padding:12px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:10px;
+    margin:15px;
+    cursor:pointer;
+    background:#e53935;
+    color:white;
+}
+
+button:hover{
+    background:#ff5252;
+}
+
+/* Uzun mesaj scrollable */
+#longMessage{
+    width:90%;
+    max-height:60vh;
+    overflow-y:auto;
+    margin:20px auto;
+    background:#222;
+    padding:20px;
+    border-radius:10px;
+    text-align:left;
+    font-size:18px;
+    line-height:1.6;
+}
+
+/* Canvas */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events:none;
+}
+
+/* Ürəklər */
+.heart{
+    position:absolute;
+    font-size:30px;
+    animation:fly 5s linear forwards;
+}
+
+@keyframes fly{
+    0%{transform:translateY(0); opacity:1;}
+    100%{transform:translateY(-1000px); opacity:0;}
+}
+
+/* Sevgi yazıları */
+.loveText{
+    position:absolute;
+    font-size:28px;
+    font-weight:bold;
+    color:#fff;
+}
+
+#bigHeart{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:120px;
+    display:none;
+}
+</style>
+</head>
+<body>
+
+<div id="intro">
+  hər şeydən əvvəl bağışlanma diləyirəm və üzr istəyirəm
+</div>
+
+<!-- Başlanğıc sual -->
+<div id="question">
+<h1>bağışlayırsan məni?</h1>
+<button onclick="noStep1()">yox</button>
+<button onclick="yesStep()">hə</button>
+</div>
+
+<!-- Uzun üzr mesajı -->
+<div id="longMessage">
+bax bilmirem ne etmişem ne sehv etmişem bilmirem mene olan bu reftarıvı baş aça bilmirem amma bu reftarın mene yaşamı yox ölümü daddırır sene yalvarıram düzəltmək üçün nelerse edek meni bagişla meni braxma menim senden başqa heçkimim yoxdu. Senin bu reftarın hereketlerin meni çox incidir hegigeten meni öldürür ve men artıg istemirem evin künclerinde divarlarında yere yixılıb bogula bogula aglayim ölüm nefessiz qalım istemrem bu hallar yaşansın mene bunu yaşatma sene yavarıram bilmirem ne etmişem ne pisliyim deyib sma üzr istəyirəm ve hegigeten eger nese etmişemsede bilki içdən peşmanam. Aydanımm xaiş edirem meni braxma heçvaxt men sensiz qala bilmirem bunu mene yaşatma nolar senden çox üzr istəyirəm bagişla meni hell edek aramizdaki bu lenet nedirse həll edey aradan qaldırag bunu xaiş edirem. Senden çox üzr istəyirəm və bagişlanma dileyirem... Seni çoxxx seviremmm
+<br><br>
+<button onclick="noStep2()">bağışlamıram</button>
+</div>
+
+<!-- Dramatik mesaj 1 -->
+<div id="drama1">
+<p>yalvarıram nolar bagişla</p>
+<button onclick="noStep3()">bağışlamıram</button>
+</div>
+
+<!-- Dramatik mesaj 2 -->
+<div id="drama2">
+<p>nolarrr ömrümmmm senee yalvarırammm nolarrr ölüm ayağında nolarr bagişlaaa qurrrbannnn olummm</p>
+<button onclick="finalStep()">son dəfə bağışlayıram</button>
+</div>
+
+<canvas id="canvas"></canvas>
+<div id="bigHeart">❤️ 0101 ❤️</div>
+
+<script>
+// Canvas setup
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+let particles=[];
+
+// Particles class
+class Particle{
+    constructor(x,y){
+        this.x=x;
+        this.y=y;
+        this.vx=(Math.random()-0.5)*12;
+        this.vy=(Math.random()-0.5)*12;
+        this.life=100;
+        this.color=`hsl(${Math.random()*360},100%,60%)`;
+    }
+    draw(){
+        ctx.fillStyle=this.color;
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,4,0,Math.PI*2);
+        ctx.fill();
+    }
+    update(){
+        this.x+=this.vx;
+        this.y+=this.vy;
+        this.life--;
+    }
+}
+
+// Animate particles
+function animate(){
+    ctx.fillStyle="rgba(0,0,0,0.25)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    particles.forEach((p,i)=>{
+        p.update();
+        p.draw();
+        if(p.life<=0) particles.splice(i,1);
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+
+function boom(){
+    for(let i=0;i<300;i++){
+        particles.push(new Particle(Math.random()*canvas.width,Math.random()*canvas.height));
+    }
+}
+
+// Hearts
+function hearts(){
+    setInterval(()=>{
+        const h=document.createElement("div");
+        h.className="heart";
+        h.style.left=Math.random()*innerWidth+"px";
+        h.style.top=innerHeight+"px";
+        h.innerHTML="❤️";
+        document.body.appendChild(h);
+        setTimeout(()=>h.remove(),5000);
+    },150);
+}
+
+// Love texts
+function loveTexts(){
+    setInterval(()=>{
+        const t=document.createElement("div");
+        t.className="loveText";
+        t.style.left=Math.random()*innerWidth+"px";
+        t.style.top=Math.random()*innerHeight+"px";
+        t.innerText=Math.random()>0.5 ? "seniiii çoxxx seviremmm" : "yaxşıkiii varımsannn";
+        document.body.appendChild(t);
+        setTimeout(()=>t.remove(),3000);
+    },300);
+}
+
+// Intro timeout
+setTimeout(()=>{
+    document.getElementById("intro").style.display="none";
+    document.getElementById("longMessage").style.display="block";
+},3000);
+
+// Düymələr funksiyaları
+function yesStep(){
+    document.getElementById("longMessage").style.display="none";
+    boom(); hearts(); loveTexts();
+    document.getElementById("bigHeart").style.display="block";
+}
+
+function noStep2(){
+    document.getElementById("longMessage").style.display="none";
+    document.getElementById("drama1").style.display="block";
+}
+
+function noStep3(){
+    document.getElementById("drama1").style.display="none";
+    document.getElementById("drama2").style.display="block";
+}
+
+function finalStep(){
+    document.getElementById("drama2").style.display="none";
+    boom(); hearts(); loveTexts();
+    document.getElementById("bigHeart").style.display="block";
+    setTimeout(()=>{particles=[]},10000);
+}
+
+</script>
+</body>
+  </html>
