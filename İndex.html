@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bağışla</title>
+
+<style>
+body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial;text-align:center;overflow:hidden}
+.section{display:none}
+.show{display:block;animation:fade 1s}
+@keyframes fade{from{opacity:0;transform:translateY(30px)}to{opacity:1}}
+
+button{
+padding:14px 30px;
+font-size:20px;
+border:none;
+border-radius:14px;
+margin:12px;
+background:#e53935;
+color:#fff
+}
+
+.box{
+background:#161616;
+margin:20px;
+padding:20px;
+border-radius:16px;
+max-height:65vh;
+overflow-y:auto;
+line-height:1.7
+}
+
+.fire{
+position:fixed;width:6px;height:6px;
+background:#fff;border-radius:50%;
+animation:boom 1.2s forwards
+}
+@keyframes boom{
+to{transform:translate(var(--x),var(--y));opacity:0}
+}
+
+.heart{
+position:fixed;bottom:-40px;
+font-size:28px;
+animation:fly 4s linear forwards
+}
+@keyframes fly{to{transform:translateY(-110vh)}}
+
+#bigHeart{font-size:140px;margin-top:20px}
+</style>
+</head>
+
+<body>
+
+<div id="intro" class="section show">
+<h1 style="margin-top:40vh">hər şeydən əvvəl<br>üzr istəyirəm</h1>
+</div>
+
+<div id="ask" class="section">
+<h2>bağışlayırsan məni</h2>
+<button onclick="go()">hə</button>
+<button onclick="go()">yox</button>
+</div>
+
+<div id="sorry" class="section box">
+mən səni incitmişəm bunu bilirəm  
+amma səni itirmək istəmirəm  
+sən mənim həyatımın ortasısan  
+
+<br><br>
+<button onclick="startNo()">bağışlamıram</button>
+</div>
+
+<div id="noSection" class="section box">
+<div id="noText"></div>
+<br>
+<button onclick="nextNo()">bağışlamıram</button>
+</div>
+
+<div id="finalAsk" class="section box">
+artıq başqa sözüm qalmadı  
+son qərar səndir  
+
+<br><br>
+<button onclick="final()">son dəfə bağışlayıram</button>
+</div>
+
+<!-- 🔴 BURDA UZUN MESAJ VAR -->
+<div id="finalMessage" class="section box">
+<div id="longText"></div>
+<br>
+<button onclick="celebrate()">❤️</button>
+</div>
+
+<div id="end" class="section">
+<h2>seniii çoxxx seviremmm</h2>
+<h2>yaxşıkiii varımsannn</h2>
+<div id="bigHeart">❤️0101❤️</div>
+</div>
+
+<script>
+setTimeout(()=>{
+intro.classList.remove("show")
+ask.classList.add("show")
+},3000)
+
+function go(){
+ask.classList.remove("show")
+sorry.classList.add("show")
+}
+
+const texts=[
+"aydanımmmm vallah indi bunu yazanda əllərim əsir",
+"sən gülməyəndə içimdə nəsə ölür",
+"səhvim varsa cəzamı ver amma getmə",
+"sən gedəndə mən boğuluram",
+"sənsiz mən yarım adamam",
+"səni incitdiyim hər an üçün özümü yeyirəm",
+"sənin bir baxışına möhtacam",
+"məni yarım qoyma nolar",
+"sən mənim evimsən",
+"səni itirsəm düzəlmərəm",
+"diz çökürəm yalvarıram",
+"ürəyimi tapdala amma getmə",
+"sənsiz nəfəsim kəsilir",
+"səni sevmək taleyimdi",
+"sən susanda dünya susur",
+"səni itirməkdən qorxuram",
+"sənin gülüşün həyatımdı",
+"səni üzmək istəmədim",
+"sənsiz qalmaq ölümdü",
+"axı mən səni çox sevirəm",
+"bu son şansım olsun",
+"məni bağışla nolar",
+"sən mənim hər şeyimsən",
+"yalvarıram getmə",
+"səni buraxmaq istəmirəm",
+"gəl düzəldək",
+"mən səni seçirəm",
+"məni tək qoyma",
+"sən olmadan olmur",
+"sənin üçün dəyişərəm",
+"son dəfə yalvarıram",
+"sənsiz yaşamaq istəmirəm",
+"mən səni çoxxx sevirəmmmm"
+]
+
+let i=0
+function startNo(){
+sorry.classList.remove("show")
+noSection.classList.add("show")
+noText.innerText=texts[0]
+}
+
+function nextNo(){
+i++
+if(i<texts.length){
+noText.innerText=texts[i]
+}else{
+noSection.classList.remove("show")
+finalAsk.classList.add("show")
+}
+}
+
+function final(){
+finalAsk.classList.remove("show")
+finalMessage.classList.add("show")
+
+document.getElementById("longText").innerText =
+"aydanımmmm vallah indi bunu yazanda əllərim əsir ürəyim sinəmə sığmır mən qarşında sınmış dağılmış biriyəm sən gülməyəndə içimdə nəsə ölür gecələr adını deyirəm səhvim varsa cəzamı ver amma getmə sənsiz mən yarımam məni buraxma diz çökürəm yalvarıram ürəyimi qabağına qoyuram tapdala amma getmə mən səni itirsəm düzəlmərəm sən mənim evimsən sığınacağımsan sənsiz yaşamaq istəmirəm mən səni çoxxx sevirəmmmm"
+}
+
+function fireworks(){
+for(let i=0;i<40;i++){
+let f=document.createElement("div")
+f.className="fire"
+f.style.left=Math.random()*100+"vw"
+f.style.top=Math.random()*100+"vh"
+f.style.setProperty("--x",(Math.random()*300-150)+"px")
+f.style.setProperty("--y",(Math.random()*300-150)+"px")
+document.body.appendChild(f)
+setTimeout(()=>f.remove(),1200)
+}
+}
+
+function hearts(){
+let h=document.createElement("div")
+h.className="heart"
+h.innerHTML="❤️"
+h.style.left=Math.random()*100+"%"
+document.body.appendChild(h)
+setTimeout(()=>h.remove(),4000)
+}
+
+function celebrate(){
+finalMessage.classList.remove("show")
+end.classList.add("show")
+let f=setInterval(fireworks,400)
+let h=setInterval(hearts,200)
+setTimeout(()=>{clearInterval(f);clearInterval(h)},10000)
+}
+</script>
+
+</body>
+  </html>
