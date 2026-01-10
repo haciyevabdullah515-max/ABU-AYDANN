@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<title>Aydanımmm 🤍</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Georgia", serif;
+}
+
+body{
+    height:100vh;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+/* İlk giriş */
+#intro{
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+    color:white;
+    font-size:26px;
+    animation:introFade 4s forwards;
+}
+
+@keyframes introFade{
+    0%{opacity:0;transform:translateY(20px)}
+    20%{opacity:1;transform:translateY(0)}
+    80%{opacity:1}
+    100%{opacity:0;visibility:hidden}
+}
+
+/* Aç düyməsi */
+#openBtn{
+    display:none;
+    padding:16px 40px;
+    font-size:22px;
+    border:none;
+    border-radius:40px;
+    background:white;
+    color:#ff4d6d;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    transition:.3s;
+}
+#openBtn:hover{
+    transform:scale(1.05);
+}
+
+/* Ağ vərəq */
+#paper{
+    display:none;
+    position:absolute;
+    width:85%;
+    max-width:520px;
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
+    animation:paperOpen .6s ease;
+}
+
+@keyframes paperOpen{
+    from{transform:scale(.8);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+
+/* Mətn */
+#paper p{
+    color:#ff4d6d;
+    font-size:18px;
+    line-height:1.7;
+    text-align:left;
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+    ilk öncə bunu bilmeyivi istiyrem ki <br><br>
+    səni hər şeydən hamıdannn çoooxxx seviremmm <br><br>
+    <b>Aydanımmm 🤍</b>
+</div>
+
+<button id="openBtn">AÇ 🤍</button>
+
+<div id="paper">
+<p>
+bugun elimden bu qederi geldi tez bazar oldu sma bunu bilmeyivi isteyrem bugunun bu aninda seni çox seviremm canımdan bele çox ve meni bagişlayasan deye canım yox ruhmu bele qurban vererem senin üçün ne olursa olsun canım sene feda olsun gözəl qızımm menimm ve bunu o balaca agilli beynive soxki canımıda alsan menden gede bilmezsen menim ve senin kitabimizda bizim ayriligimiz deye birşey yoxdu gözəll qızımmm menimmm herşeyimm bugunun son anlari ve qızımınnn parlag baxışlarıyla her parlayan ayrintisina ayriligla qurbannn olummm mennn senii herşeydenn çox seviremmm menimmmm gözəlll qızımmmm 🫠🤍 ve bunu hec vaxt unutma ki men seni heç vaxt buraxmayacam sen ise mennen hec vaxt gede bilmeyeceysen yaxşıımı gözəll qızımm
+</p>
+</div>
+
+<script>
+setTimeout(()=>{
+    document.getElementById("openBtn").style.display="block";
+},4200);
+
+openBtn.onclick=()=>{
+    openBtn.style.display="none";
+    paper.style.display="block";
+};
+</script>
+
+</body>
+</html>
